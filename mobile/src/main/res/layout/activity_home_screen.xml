@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".HomeScreen">
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listy"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="See an Overview"
+        android:id="@+id/overviewButton"
+        android:layout_below="@+id/view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+    <android.support.v7.widget.Toolbar
+        android:layout_width = "match_parent"
+        android:layout_height="50dp"
+        android:minHeight="200dp"
+        android:id="@+id/view"></android.support.v7.widget.Toolbar>
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/forehandPic"
+        android:src="@drawable/serve"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/volleyPic"
+        android:src="@drawable/volley"
+        android:layout_toEndOf="@+id/overviewButton"
+        android:layout_marginStart="40dp" />
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/backhandPic"
+        android:src="@drawable/backhand"
+        android:layout_toEndOf="@+id/forehandPic"
+        android:layout_marginStart="45dp" />
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/servePic"
+        android:src="@drawable/forehand"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/volleyPic" />
+
+
+</RelativeLayout>

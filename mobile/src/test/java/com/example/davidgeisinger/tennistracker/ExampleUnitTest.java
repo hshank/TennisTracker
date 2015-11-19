@@ -1,4 +1,4 @@
-package com.herokuapp.httpsleepy_meadow_5752.tennistracker;
+package com.example.davidgeisinger.tennistracker;
 
 import org.junit.Test;
 

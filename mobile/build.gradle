@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.herokuapp.httpsleepy_meadow_5752.tennistracker"
+        applicationId "com.example.davidgeisinger.tennistracker"
         minSdkVersion 22
         targetSdkVersion 23
         versionCode 1

@@ -2,4 +2,6 @@
     <string name="app_name">Tennis Tracker</string>
     <string name="hello_round">Hello Round World!</string>
     <string name="hello_square">Hello Square World!</string>
+    <string name="title_activity_stroke_selection">StrokeSelectionActivity</string>
+    <string name="title_activity_listening">ListeningActivity</string>
 </resources>

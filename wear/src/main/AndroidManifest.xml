@@ -19,6 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".StrokeSelectionActivity"
+            android:label="@string/title_activity_stroke_selection" >
+        </activity>
+        <activity
+            android:name=".ListeningActivity"
+            android:label="@string/title_activity_listening" >
+        </activity>
     </application>
 
 </manifest>

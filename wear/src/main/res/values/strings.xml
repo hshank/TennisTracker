@@ -1,10 +1,17 @@
 <resources>
     <string name="app_name">Tennis Tracker</string>
-    <string name="hello_round">Hello Round World!</string>
-    <string name="hello_square">Hello Square World!</string>
+    <string name="welcome">Welcome to Tennis Tracker</string>
+    <string name="welcome_message">tap to select practice session</string>
     <string name="title_activity_stroke_selection">StrokeSelectionActivity</string>
     <string name="title_activity_listening">ListeningActivity</string>
     <string name="title_forehand">Practicing Forehand</string>
+    <string name="title_backhand">Practicing Backhand</string>
+    <string name="title_serve">Practicing Serve</string>
+    <string name="title_volley">Practicing Volley</string>
+    <string name="forehand">FOREHAND</string>
+    <string name="backhand">BACKHAND</string>
+    <string name="serve">SERVE</string>
+    <string name="volley">VOLLEY</string>
     <string name="finish_session">FINISH SESSION</string>
-    <string name="listening_activity_message">Say "m" when your shots are successful. Track shots that are out of bounds by saying "long" "wide" or "net".</string>
+    <string name="listening_activity_message">Say \"in\" when your shots are successful. Track shots that are out of bounds by saying \"long\" \"wide\" or \"net\"</string>
 </resources>

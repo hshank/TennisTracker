@@ -4,15 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.speech.RecognitionListener;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.Iterator;
+import java.util.Set;
+
 public class ListeningActivity extends Activity implements RecognitionListener {
 
+    String motion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listening);
+        motion = getIntent().getStringExtra("motion");
+        setMotion();
         TextView finishSession = (TextView) this.findViewById(R.id.finish);
         finishSession.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -20,6 +27,12 @@ public class ListeningActivity extends Activity implements RecognitionListener {
                 saveSession();
             }
         });
+    }
+
+    private void setMotion() {
+        TextView nav = (TextView) this.findViewById(R.id.nav);
+        int sessionId = getResources().getIdentifier("title_" + motion, "string", getPackageName());
+        nav.setText(getString(sessionId));
     }
 
     private void saveSession() {

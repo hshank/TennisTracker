@@ -1,8 +1,10 @@
 package com.example.davidgeisinger.tennistracker;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.wearable.view.WatchViewStub;
+import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -18,7 +20,19 @@ public class MainActivity extends Activity {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
                 mTextView = (TextView) stub.findViewById(R.id.text);
+
             }
         });
+        stub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity();
+            }
+        });
+
+    }
+    private void startActivity() {
+        Intent intent = new Intent(this, StrokeSelectionActivity.class);
+        startActivity(intent);
     }
 }

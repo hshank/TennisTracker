@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="2"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:weightSum="2"
+        android:orientation="horizontal">
+        <FrameLayout
+            android:layout_height="fill_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/forehand_color"
+            android:onClick="startListener">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Forehand"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:id="@+id/forehand"
+                android:textSize="20dp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_height="fill_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/backhand_color"
+            android:onClick="startListener">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Backhand"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:id="@+id/backhand"
+                android:textSize="20dp" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:weightSum="2"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_height="fill_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/serve_color"
+            android:onClick="startListener">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Serve"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:id="@+id/serve"
+                android:textSize="20dp" />
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:layout_height="fill_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/volley_color"
+            android:onClick="startListener">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Volley"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:id="@+id/volley"
+                android:textSize="20dp" />
+        </FrameLayout>
+
+    </LinearLayout>
+</LinearLayout>

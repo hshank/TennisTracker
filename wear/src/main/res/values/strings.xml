@@ -2,4 +2,9 @@
     <string name="app_name">Tennis Tracker</string>
     <string name="hello_round">Hello Round World!</string>
     <string name="hello_square">Hello Square World!</string>
+    <string name="title_activity_stroke_selection">StrokeSelectionActivity</string>
+    <string name="title_activity_listening">ListeningActivity</string>
+    <string name="title_forehand">Practicing Forehand</string>
+    <string name="finish_session">FINISH SESSION</string>
+    <string name="listening_activity_message">Say "m" when your shots are successful. Track shots that are out of bounds by saying "long" "wide" or "net".</string>
 </resources>

@@ -1,6 +1,5 @@
 package com.example.davidgeisinger.tennistracker;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +25,7 @@ public class HomeScreen extends AppCompatActivity {
     ImageButton volleyButton;
     Button seeOverviewButton;
 
-    Context ctx = this;
+    MyDBHandler dbHandler = new MyDBHandler(this);
 
     String whichStroke;
 
@@ -35,7 +34,6 @@ public class HomeScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
-        MyDBHandler dbHandler = new MyDBHandler(ctx);
 
 
         whichStroke = "f";
@@ -63,7 +61,7 @@ public class HomeScreen extends AppCompatActivity {
 
         }
 
-        /*StatsPackage addthis = new StatsPackage("18", "sta7l8", "f", "rea469");
+       /* StatsPackage addthis = new StatsPackage("November 23rd", "5$6$9$6", "b", "56");
         Log.d("Start", addthis.time);
         dbHandler.addEntry(dbHandler, addthis);
         Log.d("Start", "HILLEZ");
@@ -96,10 +94,15 @@ public class HomeScreen extends AppCompatActivity {
 
     public void populateListView(String stroke, MyDBHandler db) {
         ArrayList<StatsPackage> items = db.findMany(stroke);
-        Log.d("MYSIZE", Integer.toString(items.size()));
-        for(int i = 0; i < items.size(); i++) {
-            Log.d("whatimentering", items.get(i).date + items.get(i).stats + items.get(i).stroke + items.get(i).time);
-            arrayAdapter.insert(items.get(i).date + "!" + items.get(i).stats + "!" + items.get(i).stroke + "!" + items.get(i).time, i);
+        arrayAdapter.clear();
+        if (items.get(0) != null) {
+            Log.d("MYSIZE", Integer.toString(items.size()));
+            for(int i = 0; i < items.size(); i++) {
+                Log.d("whatimentering", items.get(i).date + items.get(i).stats + items.get(i).stroke + items.get(i).time);
+                arrayAdapter.insert(items.get(i).date + "!" + items.get(i).stats + "!" + items.get(i).stroke + "!" + items.get(i).time, i);
+            }
+        } else {
+            // do something to tell them there are no entries
         }
         Log.d("FINISHED", "OK");
 
@@ -118,6 +121,8 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 whichStroke = "f";
+                populateListView(whichStroke, dbHandler);
+
             }
         });
         // if they choose backhand
@@ -125,6 +130,8 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 whichStroke = "b";
+                populateListView(whichStroke, dbHandler);
+
             }
         });
 
@@ -133,6 +140,7 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 whichStroke = "s";
+                populateListView(whichStroke, dbHandler);
             }
         });
 
@@ -141,6 +149,7 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 whichStroke = "v";
+                populateListView(whichStroke, dbHandler);
             }
         });
 
@@ -153,15 +162,15 @@ public class HomeScreen extends AppCompatActivity {
         seeOverviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String superlongstr = "";
+                /*String superlongstr = "";
                 for (int i = 0; i < your_array_list.size(); i++) {
                     superlongstr += your_array_list.get(i) + "$";
-                }
+                }*/
 
                 Intent intent = new Intent(HomeScreen.this, OverviewActivity.class);
 
 
-                intent.putExtra("string_to_overview", superlongstr);
+                intent.putExtra("string_to_overview", whichStroke);
                 startActivity(intent);
             }
         });

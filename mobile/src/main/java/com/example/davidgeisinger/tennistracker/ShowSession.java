@@ -17,7 +17,7 @@ public class ShowSession extends AppCompatActivity {
     TextView shotsNetText;
     TextView durationText;
 
-    double practiceTime;
+    String practiceTime;
     int shotsMade;
     int shotsLong;
     int shotsWide;
@@ -64,14 +64,22 @@ public class ShowSession extends AppCompatActivity {
 
     //parse passed string to get array of shots made and missed
     public int[] getShots(String message) {
+        String [] arr = message.split("!");
+        String [] stats = arr[1].split("\\$");
+        int [] answer = new int [4];
+        answer[0] = Integer.parseInt(stats[0]);
+        answer[1] = Integer.parseInt(stats[1]);
+        answer[2] = Integer.parseInt(stats[2]);
+        answer[3] = Integer.parseInt(stats[3]);
 
-        return null;
+        return answer;
     }
 
     //parse passed string to get duration
-    public double getTime(String message) {
+    public String getTime(String message) {
+        String [] arr = message.split("!");
 
-        return 0.0;
+        return arr[3];
     }
 
     public void changeTexts() {
@@ -79,7 +87,7 @@ public class ShowSession extends AppCompatActivity {
         shotsLongText.setText("Long: " + Integer.toString(shotsLong) + "/" + Integer.toString(shotsTotal) + " shots.");
         shotsWideText.setText("Wide: " + Integer.toString(shotsWide) + "/" + Integer.toString(shotsTotal) + " shots.");
         shotsNetText.setText("Net: " + Integer.toString(shotsNet) + "/" + Integer.toString(shotsTotal) + " shots.");
-        durationText.setText("HI");
+        durationText.setText("Length of practice: " + practiceTime + "minutes");
     }
 
     //make the chart based on the shots statistics

@@ -58,6 +58,10 @@ public class HomeScreen extends AppCompatActivity {
                 message = mybundle.getString("phone_data");
                 putInDB(message, dbHandler);
             }
+            if (mybundle.getString("stroke") != null) {
+                Log.d("GETTINGTOHERE", mybundle.getString("stroke"));
+                whichStroke = mybundle.getString("stroke");
+            }
 
         }
 
@@ -167,6 +171,11 @@ public class HomeScreen extends AppCompatActivity {
                     superlongstr += your_array_list.get(i) + "$";
                 }*/
 
+                // This makes it so clicking to see an overview without data will not crash, we
+                // have to choose what to do here
+                if (your_array_list.size() == 0) {
+                    return;
+                }
                 Intent intent = new Intent(HomeScreen.this, OverviewActivity.class);
 
 

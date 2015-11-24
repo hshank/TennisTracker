@@ -8,6 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.Viewport;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 import java.util.ArrayList;
 
 public class OverviewActivity extends AppCompatActivity {
@@ -42,7 +47,7 @@ public class OverviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
         Bundle mybundle = getIntent().getExtras();
-        String stroke = mybundle.getString("string_to_overview");
+        final String stroke = mybundle.getString("string_to_overview");
 
         avgShotsText = (TextView) findViewById(R.id.avgMade);
         mostShotsText = (TextView) findViewById(R.id.mostMade);
@@ -63,9 +68,33 @@ public class OverviewActivity extends AppCompatActivity {
         backHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(OverviewActivity.this, HomeScreen.class);
+                //intent.setAction("passing_stroke");
+                intent.putExtra("stroke", stroke);
                 startActivity(intent);
             }
         });
+
+        GraphView graph = (GraphView) findViewById(R.id.linegraph);
+        ArrayList<DataPoint> dps = new ArrayList<DataPoint>();
+        String made_stat;
+        for (int i = 0; i < items.size(); i++) {
+            made_stat = items.get(i).stats.split("\\$")[0];
+            dps.add(new DataPoint(i, Integer.parseInt(made_stat)));
+        }
+        DataPoint [] dpArr = new DataPoint[items.size()];
+        for (int i = 0; i < items.size(); i++) {
+            dpArr[i] = dps.get(i);
+        }
+            LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(dpArr);
+        graph.addSeries(series);
+
+        graph.setTitle("Set Date As Title");
+        graph.setTitleTextSize(100);
+
+        Viewport viewPort = graph.getViewport();
+        viewPort.setYAxisBoundsManual(true);
+        viewPort.setMinY(0);
+        viewPort.setMaxY(Integer.parseInt(mostShots) + 10);
     }
 
 

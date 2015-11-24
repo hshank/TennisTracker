@@ -17,8 +17,8 @@ import java.util.List;
 public class HomeScreen extends AppCompatActivity {
 
     private ListView lv;
-    ArrayAdapter<String> arrayAdapter;
-    List<String> your_array_list;
+    ArrayAdapter<StatsPackage> arrayAdapter;
+    List<StatsPackage> your_array_list;
     ImageButton forehandButton;
     ImageButton backhandButton;
     ImageButton serveButton;
@@ -42,8 +42,8 @@ public class HomeScreen extends AppCompatActivity {
 
         lv = (ListView) findViewById(R.id.listy);
 
-        your_array_list = new ArrayList<String>();
-        arrayAdapter = new ArrayAdapter<String>(
+        your_array_list = new ArrayList<StatsPackage>();
+        arrayAdapter = new ArrayAdapter<StatsPackage>(
                 this,
                 android.R.layout.simple_list_item_1,
                 your_array_list);
@@ -65,7 +65,7 @@ public class HomeScreen extends AppCompatActivity {
 
         }
 
-       /* StatsPackage addthis = new StatsPackage("November 23rd", "5$6$9$6", "b", "56");
+        /*StatsPackage addthis = new StatsPackage("November 24th", "67$26$14$9", "f", "37");
         Log.d("Start", addthis.time);
         dbHandler.addEntry(dbHandler, addthis);
         Log.d("Start", "HILLEZ");
@@ -82,12 +82,13 @@ public class HomeScreen extends AppCompatActivity {
 
 
                 Object item = parent.getItemAtPosition(position);
-                String real_item = (String) item;
+                StatsPackage real_item = (StatsPackage) item;
+                String toBePassed = real_item.date + "!" + real_item.stats + "!" + real_item.stroke + "!" + real_item.time;
 
                 Intent intent = new Intent(HomeScreen.this, ShowSession.class);
 
 
-                intent.putExtra("string_passed", real_item);
+                intent.putExtra("string_passed", toBePassed);
                 startActivity(intent);
 
             }
@@ -103,7 +104,7 @@ public class HomeScreen extends AppCompatActivity {
             Log.d("MYSIZE", Integer.toString(items.size()));
             for(int i = 0; i < items.size(); i++) {
                 Log.d("whatimentering", items.get(i).date + items.get(i).stats + items.get(i).stroke + items.get(i).time);
-                arrayAdapter.insert(items.get(i).date + "!" + items.get(i).stats + "!" + items.get(i).stroke + "!" + items.get(i).time, i);
+                arrayAdapter.insert(items.get(i), i);
             }
         } else {
             // do something to tell them there are no entries

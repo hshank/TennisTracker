@@ -85,7 +85,7 @@ public class OverviewActivity extends AppCompatActivity {
         for (int i = 0; i < items.size(); i++) {
             dpArr[i] = dps.get(i);
         }
-            LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(dpArr);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(dpArr);
         graph.addSeries(series);
 
         graph.setTitle("Set Date As Title");

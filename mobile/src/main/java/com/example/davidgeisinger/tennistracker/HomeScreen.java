@@ -17,6 +17,8 @@ import java.util.List;
 
 public class HomeScreen extends AppCompatActivity {
 
+
+    //Harish im making a comment for you
     private ListView lv;
     ArrayAdapter<String> arrayAdapter;
     List<String> your_array_list;

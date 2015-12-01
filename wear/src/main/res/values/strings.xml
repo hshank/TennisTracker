@@ -12,6 +12,12 @@
     <string name="backhand">BACKHAND</string>
     <string name="serve">SERVE</string>
     <string name="volley">VOLLEY</string>
+    <string name="shots_made">shots made</string>
+    <string name="begin_session">BEGIN SESSION</string>
     <string name="finish_session">FINISH SESSION</string>
     <string name="listening_activity_message">Say \"in\" when your shots are successful. Track shots that are out of bounds by saying \"long\" \"wide\" or \"net\"</string>
+    <string name="title_activity_instruction">InstructionActivity</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -19,7 +19,7 @@ public class StrokeSelectionActivity extends Activity {
     }
 
     public void startListener(View view) {
-        Intent intent = new Intent(this, ListeningActivity.class);
+        Intent intent = new Intent(this, InstructionActivity.class);
         intent.putExtra("motion", (String) view.getTag());
         startActivity(intent);
     }

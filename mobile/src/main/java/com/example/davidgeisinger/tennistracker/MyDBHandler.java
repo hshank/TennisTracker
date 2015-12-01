@@ -82,10 +82,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
 
     public ArrayList<StatsPackage> findMany(String stroke) {
-        String query = "Select * FROM " + TableData.TableInfo.TABLE_NAME + " WHERE " + TableData.TableInfo.COLUMN_Stroke + " =  \"" + "stroke" + "\"";
+        String query = "Select * FROM " + TableData.TableInfo.TABLE_NAME + " WHERE " + TableData.TableInfo.COLUMN_Stroke + " =  \"" + stroke + "\"";
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = db.rawQuery(query, null);
+        Log.d("DBFIND", "First");
 
         ArrayList<StatsPackage> list_pack = new ArrayList<StatsPackage>();
         StatsPackage new_sp = new StatsPackage("","","","");
@@ -101,6 +102,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
             list_pack.add(new_sp);
             return list_pack;
         }
+        Log.d("DBFIND", "Second");
 
         while(cursor.moveToNext()) {
             Log.d("counter", cursor.getString(0) + cursor.getString(1) + cursor.getString(2) + cursor.getString(3));

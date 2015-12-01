@@ -19,4 +19,23 @@ public class StatsPackage {
 
     }
 
+    public String toString() {
+        String [] arr = stats.split("\\$");
+        int made;
+        int longg;
+        int wide;
+        int net;
+        int total;
+        if (arr.length == 1) {
+            return " This one is bogus";
+        } else {
+            made = Integer.parseInt(arr[0]);
+            longg = Integer.parseInt(arr[1]);
+            wide = Integer.parseInt(arr[2]);
+            net = Integer.parseInt(arr[3]);
+            total = made + wide + longg + net;
+        }
+        return date + "   " + Integer.toString(made) + " out of " + Integer.toString(total) + " shots made";
+    }
+
 }

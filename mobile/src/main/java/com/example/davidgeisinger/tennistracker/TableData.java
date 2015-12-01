@@ -20,7 +20,7 @@ public class TableData {
         public static final String COLUMN_Stats = "stats";
         public static final String COLUMN_Time = "time";
         public static final String COLUMN_Stroke = "stroke";
-        public static final String DATABASE_NAME = "tennis_DB";
-        public static final String TABLE_NAME = "tennis_Table";
+        public static final String DATABASE_NAME = "tennis_DBv1";
+        public static final String TABLE_NAME = "tennis_Tablev1";
     }
 }

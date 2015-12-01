@@ -11,8 +11,6 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
-import android.speech.SpeechRecognizer;
-import android.speech.tts.Voice;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -24,11 +22,13 @@ public class ListeningActivity extends Activity {
     private Messenger mServiceMessenger;
     String motion;
     private int mBindFlag;
-    int shots_in;
-    int shots_wide;
-    int shots_long;
-    int shots_net;
-    int shots_total;
+    protected final Messenger mResponseMessenger = new Messenger(new ResponseHandler());
+    protected int shots_in;
+    protected int shots_wide;
+    protected int shots_long;
+    protected int shots_net;
+    protected int shots_total;
+    private TextView shotsMade;
     Intent service;
 
     @Override
@@ -39,6 +39,7 @@ public class ListeningActivity extends Activity {
         TextView nav = (TextView) this.findViewById(R.id.nav);
         int sessionId = getResources().getIdentifier("title_" + motion, "string", getPackageName());
         nav.setText(getString(sessionId));
+        shotsMade = (TextView) this.findViewById(R.id.shotsMade);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         service = new Intent(this, VoiceRecognitionService.class);
@@ -57,7 +58,6 @@ public class ListeningActivity extends Activity {
     protected void onStop() {
         super.onStop();
         if (mServiceMessenger != null) {
-            Log.d("Listene", "Stop");
             stopService(service);
             unbindService(mServiceConnection);
             mServiceMessenger = null;
@@ -76,15 +76,28 @@ public class ListeningActivity extends Activity {
         @Override
         public void handleMessage(Message msg) {
             int respCode = msg.what;
-            Log.d("RESPONSE", "HELLO");
+            Log.d("bLSH", "HELLO");
             switch (respCode) {
-                case VoiceRecognitionService.MSG_IN: {
-//                    result = msg.getData().getString("respData");
-//                    txtResult.setText(result);
-                }
+                case VoiceRecognitionService.MSG_IN:
+                    shots_in += 1;
+                    break;
+                case VoiceRecognitionService.MSG_LONG:
+                    shots_long += 1;
+                    break;
+                case VoiceRecognitionService.MSG_WIDE:
+                    shots_wide += 1;
+                    break;
+                case VoiceRecognitionService.MSG_NET:
+                    shots_net += 1;
+                    break;
             }
+            shots_total += 1;
+            updateView();
         }
+    }
 
+    protected void updateView() {
+        shotsMade.setText(shots_in + "/" + shots_total);
     }
 
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
@@ -93,12 +106,14 @@ public class ListeningActivity extends Activity {
             mServiceMessenger = new Messenger(service);
             Message msg = new Message();
 //            msg.replyTo = new Messenger(new ResponseHandler());
+            msg.replyTo = mResponseMessenger;
             msg.what = VoiceRecognitionService.MSG_RECOGNIZER_START_LISTENING;
             try {
                 mServiceMessenger.send(msg);
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
+
         }
 
         @Override

@@ -25,15 +25,17 @@ public class VoiceRecognitionService extends Service
     protected SpeechRecognizer mSpeechRecognizer;
     protected Intent mSpeechRecognizerIntent;
     protected final Messenger mServerMessenger = new Messenger(new IncomingHandler(this));
+    protected Messenger mResponseMessenger;
 
     protected boolean mIsListening;
 
     static final int MSG_RECOGNIZER_START_LISTENING = 1;
-    static final int MSG_RECOGNIZER_CANCEL = 2;
-    static final int MSG_IN = 3;
-    static final int MSG_LONG = 4;
-    static final int MSG_WIDE = 5;
-    static final int MSG_NET = 6;
+    static final int MSG_RECOGNIZER_CONTINUE_LISTENING = 2;
+    static final int MSG_RECOGNIZER_CANCEL = 3;
+    static final int MSG_IN = 4;
+    static final int MSG_LONG = 5;
+    static final int MSG_WIDE = 6;
+    static final int MSG_NET = 7;
 
 
     @Override
@@ -64,20 +66,18 @@ public class VoiceRecognitionService extends Service
         {
             final VoiceRecognitionService target = mtarget.get();
 
-            switch (msg.what)
-            {
+            switch (msg.what) {
                 case MSG_RECOGNIZER_START_LISTENING:
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-                    {
-                        // turn off beep sound
-                        target.mAudioManager.setStreamMute(AudioManager.STREAM_SYSTEM, true);
-                    }
-                    if (!target.mIsListening)
-                    {
+                    target.mSpeechRecognizer.startListening(target.mSpeechRecognizerIntent);
+                    target.mIsListening = true;
+                    target.mResponseMessenger = msg.replyTo;
+                    Log.d("Recgonizer", "message start listening"); //$NON-NLS-1$
+                    break;
+                case MSG_RECOGNIZER_CONTINUE_LISTENING:
+                    if (!target.mIsListening) {
                         target.mSpeechRecognizer.startListening(target.mSpeechRecognizerIntent);
                         target.mIsListening = true;
-                        Log.d("Recgonizer", "message start listening"); //$NON-NLS-1$
+                        Log.d("Recgonizer", "message continue listening"); //$NON-NLS-1$
                     }
                     break;
 
@@ -125,7 +125,7 @@ public class VoiceRecognitionService extends Service
         public void onError(int error)
         {
             mIsListening = false;
-            Message message = Message.obtain(null, MSG_RECOGNIZER_START_LISTENING);
+            Message message = Message.obtain(null, MSG_RECOGNIZER_CONTINUE_LISTENING);
             try
             {
                 mServerMessenger.send(message);
@@ -156,22 +156,47 @@ public class VoiceRecognitionService extends Service
         public void onResults(Bundle results) {
             Log.d(TAG, "onResults"); //$NON-NLS-1$
             ArrayList strlist = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+            Message res = new Message();
             for (int i = 0; i < strlist.size();i++ ) {
                 Log.d("Speech", "result=" + strlist.get(i));
                 switch(strlist.get(i).toString()) {
                     case "in":
+                        res.what = VoiceRecognitionService.MSG_IN;
+                        try {
+                            mResponseMessenger.send(res);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
                         break;
                     case "long":
+                        res.what = VoiceRecognitionService.MSG_LONG;
+                        try {
+                            mResponseMessenger.send(res);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
                         break;
                     case "wide":
+                        res.what = VoiceRecognitionService.MSG_WIDE;
+                        try {
+                            mResponseMessenger.send(res);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
                         break;
                     case "net":
+                        res.what = VoiceRecognitionService.MSG_NET;
+                        try {
+                            mResponseMessenger.send(res);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
                         break;
                 }
             }
             mIsListening = false;
             Message msg = new Message();
-            msg.what = VoiceRecognitionService.MSG_RECOGNIZER_START_LISTENING;
+            msg.what = VoiceRecognitionService.MSG_RECOGNIZER_CONTINUE_LISTENING;
             try {
                 mServerMessenger.send(msg);
             } catch (RemoteException e) {

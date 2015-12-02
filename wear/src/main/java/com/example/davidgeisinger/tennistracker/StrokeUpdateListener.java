@@ -5,4 +5,5 @@ package com.example.davidgeisinger.tennistracker;
  */
 public interface StrokeUpdateListener {
     public void sendProgress(double progress);
+    // Need to send Progress from the watch interface to phone's activityListener
 }

@@ -35,6 +35,7 @@
         android:id="@+id/wide"
         android:layout_above="@+id/time"
         android:layout_alignStart="@+id/time"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="38dp" />
 
     <TextView

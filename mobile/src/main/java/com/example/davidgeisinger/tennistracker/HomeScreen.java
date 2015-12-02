@@ -67,13 +67,17 @@ public class HomeScreen extends AppCompatActivity {
 
         }
 
-        /*StatsPackage addthis = new StatsPackage("November 24th", "67$26$14$9", "f", "37");
+        StatsPackage addthis = new StatsPackage("November 24th", "67$26$14$9", "f", "37");
+        //StatsPackage addthis1 = new StatsPackage("November 26th", "7$6$1$12", "f", "37");
+        //StatsPackage addthis2 = new StatsPackage("November 25th", "63$21$14$2", "f", "37");
         Log.d("Start", addthis.time);
         dbHandler.addEntry(dbHandler, addthis);
+        //dbHandler.addEntry(dbHandler, addthis1);
+        //dbHandler.addEntry(dbHandler, addthis2);
         Log.d("Start", "HILLEZ");
 
         StatsPackage check_this = dbHandler.findEntry(addthis);
-       Log.d("Chekcing", check_this.time);*/
+       Log.d("Chekcing", check_this.time);
 
         populateListView(whichStroke, dbHandler);
 

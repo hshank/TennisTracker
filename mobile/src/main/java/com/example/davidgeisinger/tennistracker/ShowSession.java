@@ -100,7 +100,7 @@ public class ShowSession extends AppCompatActivity {
     public void changeTexts() {
         shotsInText.setText("Successful: " + Integer.toString(shotsMade) + "/" + Integer.toString(shotsTotal) + " shots.");
         shotsLongText.setText("Long: " + Integer.toString(shotsLong) + "/" + Integer.toString(shotsTotal) + " shots.");
-        shotsWideText.setText("Wide: " + Integer.toString(shotsWide) + "/" + Integer.toString(shotsTotal) + " shots.");
+        shotsWideText.setText("          Wide: " + Integer.toString(shotsWide) + "/" + Integer.toString(shotsTotal) + " shots.");
         shotsNetText.setText("Net: " + Integer.toString(shotsNet) + "/" + Integer.toString(shotsTotal) + " shots.");
         durationText.setText("Length of practice: " + practiceTime + " minutes");
     }

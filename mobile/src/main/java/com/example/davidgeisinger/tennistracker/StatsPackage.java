@@ -35,7 +35,7 @@ public class StatsPackage {
             net = Integer.parseInt(arr[3]);
             total = made + wide + longg + net;
         }
-        return date + "   " + Integer.toString(made) + " out of " + Integer.toString(total) + " shots made";
+        return date + "\n" + Integer.toString(made) + " out of " + Integer.toString(total) + " shots made";
     }
 
 }

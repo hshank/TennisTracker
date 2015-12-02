@@ -27,6 +27,18 @@
             android:name=".ListeningActivity"
             android:label="@string/title_activity_listening" >
         </activity>
+        <activity
+            android:name=".InstructionActivity"
+            android:label="@string/title_activity_instruction" >
+        </activity>
+
+        <service
+            android:name=".VoiceRecognitionService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
     </application>
 
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

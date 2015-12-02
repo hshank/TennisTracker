@@ -12,39 +12,56 @@
         android:layout_weight="1"
         android:weightSum="2"
         android:orientation="horizontal">
-        <FrameLayout
+        <RelativeLayout
+            android:tag="forehand"
             android:layout_height="fill_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:background="@color/forehand_color"
             android:onClick="startListener">
-
+            <ImageView
+                android:layout_width="20sp"
+                android:layout_height="30sp"
+                android:src="@drawable/serve"
+                android:id="@+id/imageView"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Forehand"
+                android:text="@string/forehand"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
                 android:id="@+id/forehand"
-                android:textSize="20dp" />
-        </FrameLayout>
+                android:textSize="15dp"
+                android:layout_below="@+id/imageView"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
 
-        <FrameLayout
+        <RelativeLayout
+            android:tag="backhand"
             android:layout_height="fill_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:background="@color/backhand_color"
             android:onClick="startListener">
-
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="30dp"
+                android:src="@drawable/serve"
+                android:id="@+id/imageView2"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Backhand"
+                android:text="@string/backhand"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
-                android:id="@+id/backhand"
-                android:textSize="20dp" />
-        </FrameLayout>
+                android:textSize="15dp"
+                android:layout_below="@+id/imageView2"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -55,40 +72,57 @@
         android:weightSum="2"
         android:orientation="horizontal">
 
-        <FrameLayout
+        <RelativeLayout
+            android:tag="serve"
             android:layout_height="fill_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:background="@color/serve_color"
             android:onClick="startListener">
-
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="30dp"
+                android:src="@drawable/serve"
+                android:id="@+id/imageView3"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Serve"
+                android:text="@string/serve"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
-                android:id="@+id/serve"
-                android:textSize="20dp" />
-        </FrameLayout>
+                android:textSize="15dp"
+                android:layout_below="@+id/imageView3"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
 
 
-        <FrameLayout
+        <RelativeLayout
+            android:tag="volley"
             android:layout_height="fill_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:background="@color/volley_color"
             android:onClick="startListener">
-
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="30dp"
+                android:src="@drawable/serve"
+                android:id="@+id/imageView4"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Volley"
-                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="@string/volley"
                 android:textColor="@color/white"
-                android:id="@+id/volley"
-                android:textSize="20dp" />
-        </FrameLayout>
+                android:textSize="15sp"
+                android:layout_gravity="center"
+                android:layout_below="@+id/imageView4"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
 
     </LinearLayout>
 </LinearLayout>

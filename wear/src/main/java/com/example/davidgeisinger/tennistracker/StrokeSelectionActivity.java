@@ -3,9 +3,12 @@ package com.example.davidgeisinger.tennistracker;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class StrokeSelectionActivity extends Activity {
 
@@ -16,7 +19,8 @@ public class StrokeSelectionActivity extends Activity {
     }
 
     public void startListener(View view) {
-        Intent intent = new Intent(this, ListeningActivity.class);
+        Intent intent = new Intent(this, InstructionActivity.class);
+        intent.putExtra("motion", (String) view.getTag());
         startActivity(intent);
     }
 }

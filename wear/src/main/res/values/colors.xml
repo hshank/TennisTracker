@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="red">#ffff0000</color>
+    <color name="red">#DC593C</color>
     <color name="white">#FFFFFF</color>
-    <color name="forehand_color">#8F9779</color>
-    <color name="backhand_color">#90EE90</color>
-    <color name="serve_color">#013220</color>
-    <color name="volley_color">#71BC78</color>
+    <color name="forehand_color">#359F7A</color>
+    <color name="backhand_color">#77AE61</color>
+    <color name="serve_color">#A29B42</color>
+    <color name="volley_color">#B3B54C</color>
 </resources>

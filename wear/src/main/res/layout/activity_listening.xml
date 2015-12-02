@@ -1,31 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context=".ListeningActivity" tools:deviceIds="wear_round">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/forehand_color">
 
     <TextView
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:text="@string/title_forehand"
-        android:layout_above="@+id/main"
+        android:id="@+id/nav"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="26dp"
-        android:id="@+id/nav" />
+        android:layout_marginTop="28dp" />
 
-    <TextView
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="@string/listening_activity_message"
-        android:textAlignment="center"
+    <FrameLayout
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@color/white"
         android:layout_centerVertical="true"
-        android:id="@+id/main"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true"
+        android:id="@+id/frameLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shots_made"
+            android:textColor="@color/forehand_color"
+            android:textSize="12dp"
+            android:layout_gravity="center_horizontal|bottom"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/shotsMade"
+            android:text="0/0"
+            android:layout_gravity="center"
+            android:textColor="@color/forehand_color"
+            android:textSize="30dp"/>
+    </FrameLayout>
 
     <TextView
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:text="@string/finish_session"
         android:textAlignment="center"
-
         android:id="@+id/finish"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="27dp" />
+        android:layout_marginBottom="27dp"
+        android:onClick="finishSession"
+        android:clickable="true"/>
 </RelativeLayout>

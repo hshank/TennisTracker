@@ -1,17 +1,25 @@
 package com.example.davidgeisinger.tennistracker;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class HomeScreen extends AppCompatActivity {
@@ -20,6 +28,7 @@ public class HomeScreen extends AppCompatActivity {
     //Harish im making a comment for you
     private ListView lv;
     ArrayAdapter<StatsPackage> arrayAdapter;
+    StatsPackageDataAdapter statsAdapter;
     List<StatsPackage> your_array_list;
     ImageButton forehandButton;
     ImageButton backhandButton;
@@ -30,29 +39,30 @@ public class HomeScreen extends AppCompatActivity {
     MyDBHandler dbHandler = new MyDBHandler(this);
 
     String whichStroke;
+//    DataReceiver dataReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
-
-
         whichStroke = "f";
         setTheSwingListeners();
         setTheOverviewListener();
-
         lv = (ListView) findViewById(R.id.listy);
-
+        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
+                new IntentFilter("broadcastStats"));
+//        dataReceiver = new DataReceiver();
+//        registerReceiver(mMessageReceiver, new IntentFilter("broadcastStats"));
         your_array_list = new ArrayList<StatsPackage>();
         arrayAdapter = new ArrayAdapter<StatsPackage>(
                 this,
                 android.R.layout.simple_list_item_1,
                 your_array_list);
-
-
         lv.setAdapter(arrayAdapter);
-
+        Intent service = new Intent(this, PhoneListenerService.class);
+        startService(service);
+        Log.d("start", "service");
         String message;
         Bundle mybundle = getIntent().getExtras();
         if (mybundle != null) {
@@ -64,7 +74,6 @@ public class HomeScreen extends AppCompatActivity {
                 Log.d("GETTINGTOHERE", mybundle.getString("stroke"));
                 whichStroke = mybundle.getString("stroke");
             }
-
         }
 
         StatsPackage addthis = new StatsPackage("November 24th", "67$26$14$9", "f", "37");
@@ -77,23 +86,15 @@ public class HomeScreen extends AppCompatActivity {
         Log.d("Start", "HILLEZ");
 
         StatsPackage check_this = dbHandler.findEntry(addthis);
-       Log.d("Chekcing", check_this.time);
-
+        Log.d("Chekcing", check_this.time);
         populateListView(whichStroke, dbHandler);
-
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-
                 Object item = parent.getItemAtPosition(position);
                 StatsPackage real_item = (StatsPackage) item;
                 String toBePassed = real_item.date + "!" + real_item.stats + "!" + real_item.stroke + "!" + real_item.time;
-
                 Intent intent = new Intent(HomeScreen.this, ShowSession.class);
-
-
                 intent.putExtra("string_passed", toBePassed);
                 startActivity(intent);
 
@@ -203,5 +204,51 @@ public class HomeScreen extends AppCompatActivity {
         //actually populate the DB
     }
 
+    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Bundle extra = intent.getExtras();
+            double in = extra.getDouble("in");
+            double longg = extra.getDouble("long");
+            double wide = extra.getDouble("wide");
+            double net = extra.getDouble("net");
+            Log.d("RECEIVED", "HELLO");
+            arrayAdapter.notifyDataSetChanged();
+//            StatsPackage newEntry = new StatsPackage(magnitude, location, longitude, latitude);
+//            pastEarthquakes.add(0, newEntry);
+//            dataAdapter.notifyDataSetChanged();
+//            if (extra.getString("type") == "notify") {
+//                new SendToWatchThread("/message_path", formatMessage(newEntry)).start();
+//                openMap(newEntry);
+//            }
+        }
+    };
+
+    private class StatsPackageDataAdapter extends ArrayAdapter<StatsPackageDataAdapter> {
+
+        HashMap<StatsPackageDataAdapter, Integer> mIdMap = new HashMap<StatsPackageDataAdapter, Integer>();
+
+        public StatsPackageDataAdapter(Context context, List<StatsPackageDataAdapter> objects) {
+            super(context, 0, objects);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            // Get the data item for this position
+            StatsPackageDataAdapter data = getItem(position);
+            // Check if an existing view is being reused, otherwise inflate the view
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_home_screen, parent, false);
+            }
+//            // Lookup view for data population
+//            TextView location = (TextView) convertView.findViewById(R.id.location);
+//            TextView magnitude = (TextView) convertView.findViewById(R.id.magnitude);
+//            // Populate the data into the template view using the data object
+//            location.setText(data.getLocation());
+//            magnitude.setText(Double.toString(data.getMagnitude()));
+            // Return the completed view to render on screen
+            return convertView;
+        }
+    }
 
 }

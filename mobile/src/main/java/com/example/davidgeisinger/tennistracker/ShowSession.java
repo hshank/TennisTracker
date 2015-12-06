@@ -2,6 +2,7 @@ package com.example.davidgeisinger.tennistracker;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,10 +11,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.Viewport;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
+import android.text.Html;
+
 
 public class ShowSession extends AppCompatActivity {
 
@@ -32,11 +36,12 @@ public class ShowSession extends AppCompatActivity {
     int shotsTotal;
 
     GraphView graph;
-
+    String color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setElevation(0);
         setContentView(R.layout.activity_show_session);
         Bundle mybundle = getIntent().getExtras();
         String message = mybundle.getString("string_passed");
@@ -50,6 +55,22 @@ public class ShowSession extends AppCompatActivity {
 
         String [] str_arr = message.split("!");
         final String stroke = str_arr[2];
+        if (stroke.equals("f")){
+            color = "#218A6A";
+        }
+        else if (stroke.equals("b")){
+            color = "#34A17B";
+        }
+        else if (stroke.equals("s")){
+            color = "#78AF62";
+        }
+        else {
+            color = "#B4B64D";
+        }
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor(color));
+        getSupportActionBar().setBackgroundDrawable(colorDrawable);
+        setTitle(str_arr[0]);
+
 
         back_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -98,11 +119,11 @@ public class ShowSession extends AppCompatActivity {
     }
 
     public void changeTexts() {
-        shotsInText.setText("Successful: " + Integer.toString(shotsMade) + "/" + Integer.toString(shotsTotal) + " shots.");
-        shotsLongText.setText("Long: " + Integer.toString(shotsLong) + "/" + Integer.toString(shotsTotal) + " shots.");
-        shotsWideText.setText("          Wide: " + Integer.toString(shotsWide) + "/" + Integer.toString(shotsTotal) + " shots.");
-        shotsNetText.setText("Net: " + Integer.toString(shotsNet) + "/" + Integer.toString(shotsTotal) + " shots.");
-        durationText.setText("Length of practice: " + practiceTime + " minutes");
+        shotsInText.setText(Html.fromHtml("    <b>Successful: </b> " + Integer.toString(shotsMade) + "/" + Integer.toString(shotsTotal) + " shots."));
+        shotsLongText.setText(Html.fromHtml("    <b>Long: </b> " + Integer.toString(shotsLong) + "/" + Integer.toString(shotsTotal) + " shots."));
+        shotsWideText.setText(Html.fromHtml("    <b>Wide: </b> " + Integer.toString(shotsWide) + "/" + Integer.toString(shotsTotal) + " shots."));
+        shotsNetText.setText(Html.fromHtml("    <b>Net: </b> " + Integer.toString(shotsNet) + "/" + Integer.toString(shotsTotal) + " shots."));
+        durationText.setText(Html.fromHtml("    <b>Length of Practice: </b> " + practiceTime + " minutes"));
     }
 
     //make the chart based on the shots statistics
@@ -119,10 +140,16 @@ public class ShowSession extends AppCompatActivity {
         Viewport viewPort = graph.getViewport();
         viewPort.setYAxisBoundsManual(true);
         viewPort.setMinY(0);
-        viewPort.setMaxY(shotsMade+shotsLong+shotsWide+shotsNet);
+        viewPort.setMaxY(shotsMade + shotsLong + shotsWide + shotsNet);
         series.setSpacing(50);
         series.setDrawValuesOnTop(true);
-        series.setValuesOnTopColor(Color.RED);
+        series.setValuesOnTopColor(Color.parseColor(color));
+        series.setValueDependentColor(new ValueDependentColor<DataPoint>() {
+            @Override
+            public int get(DataPoint data) {
+                return Color.parseColor(color);
+            }
+        });
 
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
         staticLabelsFormatter.setHorizontalLabels(new String[]{"made", "long", "wide", "net"});

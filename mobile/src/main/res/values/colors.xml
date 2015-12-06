@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="red">#DC593C</color>
+    <color name="white">#FFFFFF</color>
+    <color name="forehand_color">#218A6A</color>
+    <color name="backhand_color">#34A17B</color>
+    <color name="serve_color">#78AF62</color>
+    <color name="volley_color">#B4B64D</color>
 </resources>

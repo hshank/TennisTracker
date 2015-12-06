@@ -2,6 +2,8 @@ package com.example.davidgeisinger.tennistracker;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -27,7 +29,7 @@ public class OverviewActivity extends AppCompatActivity {
     String leastShotsTotal;
     String mostShotsDate;
     String leastShotsDate;
-
+    String color;
 
     String avgPracticeTime;
     String mostPracticeTime;
@@ -45,10 +47,36 @@ public class OverviewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setElevation(0);
         setContentView(R.layout.activity_overview);
         Bundle mybundle = getIntent().getExtras();
         final String stroke = mybundle.getString("string_to_overview");
-
+        if (stroke.equals("f")){
+            setTitle("Forehand Overview");
+        }
+        else if (stroke.equals("s")){
+            setTitle("Serve Overview");
+        }
+        else if (stroke.equals("v")){
+            setTitle("Volley Overview");
+        }
+        else {
+            setTitle("Backhand Overview");
+        }
+        if (stroke.equals("f")){
+            color = "#359F7A";
+        }
+        else if (stroke.equals("s")){
+            color = "#77AE61";
+        }
+        else if (stroke.equals("v")){
+            color = "#A29B42";
+        }
+        else {
+            color = "#B3B54C";
+        }
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor(color));
+        getSupportActionBar().setBackgroundDrawable(colorDrawable);
         avgShotsText = (TextView) findViewById(R.id.avgMade);
         mostShotsText = (TextView) findViewById(R.id.mostMade);
         leastShotsText = (TextView) findViewById(R.id.leastMade);
@@ -81,7 +109,7 @@ public class OverviewActivity extends AppCompatActivity {
             made_stat = items.get(i).stats.split("\\$")[0];
             dps.add(new DataPoint(i, Integer.parseInt(made_stat)));
         }
-        DataPoint [] dpArr = new DataPoint[items.size()];
+        DataPoint[] dpArr = new DataPoint[items.size()];
         for (int i = 0; i < items.size(); i++) {
             dpArr[i] = dps.get(i);
         }
@@ -90,7 +118,7 @@ public class OverviewActivity extends AppCompatActivity {
 
         graph.setTitle("Set Date As Title");
         graph.setTitleTextSize(100);
-
+        series.setColor(Color.parseColor(color));
         Viewport viewPort = graph.getViewport();
         viewPort.setYAxisBoundsManual(true);
         viewPort.setMinY(0);

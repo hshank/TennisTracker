@@ -1,6 +1,7 @@
 package com.example.davidgeisinger.tennistracker;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,11 +14,11 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
+import android.graphics.Color;
 
 public class HomeScreen extends AppCompatActivity {
 
 
-    //Harish im making a comment for you
     private ListView lv;
     ArrayAdapter<StatsPackage> arrayAdapter;
     List<StatsPackage> your_array_list;
@@ -26,6 +27,8 @@ public class HomeScreen extends AppCompatActivity {
     ImageButton serveButton;
     ImageButton volleyButton;
     Button seeOverviewButton;
+    View title;
+    View titleBar;
 
     MyDBHandler dbHandler = new MyDBHandler(this);
 
@@ -33,10 +36,16 @@ public class HomeScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //title = getWindow().findViewById(android.R.id.title);
+        //titleBar = (View) title.getParent();
+        //titleBar.setBackgroundColor(Color.RED);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+        getSupportActionBar().setElevation(0);
 
-
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#359F7A"));
+        getSupportActionBar().setBackgroundDrawable(colorDrawable);
 
         whichStroke = "f";
         setTheSwingListeners();
@@ -104,6 +113,27 @@ public class HomeScreen extends AppCompatActivity {
     }
 
     public void populateListView(String stroke, MyDBHandler db) {
+        Button button = (Button) findViewById(R.id.overviewButton);
+        if (stroke.equals("f")){
+            button.setBackgroundColor(Color.parseColor("#359F7A"));
+            ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#359F7A"));
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
+        }
+        else if (stroke.equals("s")){
+            button.setBackgroundColor(Color.parseColor("#77AE61"));
+            ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#77AE61"));
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
+        }
+        else if (stroke.equals("v")){
+            button.setBackgroundColor(Color.parseColor("#A29B42"));
+            ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#A29B42"));
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
+        }
+        else {
+            button.setBackgroundColor(Color.parseColor("#B3B54C"));
+            ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#B3B54C"));
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
+        }
         ArrayList<StatsPackage> items = db.findMany(stroke);
         arrayAdapter.clear();
         if (items.get(0) != null) {

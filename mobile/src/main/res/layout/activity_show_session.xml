@@ -15,9 +15,6 @@
         android:title="Practice Overview"
         android:layout_marginTop="50dp" />
 
-
-
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,9 +30,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/wide"
-        android:layout_above="@+id/time"
+        android:layout_above="@+id/net"
         android:layout_alignStart="@+id/time"
-        android:layout_centerHorizontal="true"
+
         android:layout_marginBottom="38dp" />
 
     <TextView
@@ -45,7 +42,7 @@
         android:text="Medium Text"
         android:id="@+id/time"
         android:layout_above="@+id/backtohome"
-        android:layout_centerHorizontal="true"
+
         android:layout_marginBottom="37dp" />
 
     <TextView
@@ -55,7 +52,7 @@
         android:text="Medium Text"
         android:id="@+id/longg"
         android:layout_above="@+id/wide"
-        android:layout_centerHorizontal="true" />
+    />
 
     <TextView
         android:layout_width="wrap_content"
@@ -64,7 +61,7 @@
         android:text="Medium Text"
         android:id="@+id/net"
         android:layout_above="@+id/time"
-        android:layout_centerHorizontal="true" />
+ />
 
     <TextView
         android:layout_width="wrap_content"
@@ -73,5 +70,5 @@
         android:text="Medium Text"
         android:id="@+id/success"
         android:layout_above="@+id/longg"
-        android:layout_centerHorizontal="true" />
+       />
 </RelativeLayout>

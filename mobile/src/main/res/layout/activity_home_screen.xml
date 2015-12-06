@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".HomeScreen">
+    android:layout_height="match_parent"  tools:context=".HomeScreen">
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listy"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:layout_below="@+id/overviewButton" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="See an Overview"
+        android:layout_width="175dp"
+        android:layout_height="35dp"
+        android:text="   See an Overview   "
         android:id="@+id/overviewButton"
-        android:layout_below="@+id/view"
+        android:background="@color/forehand_color"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/backhandPic"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginBottom="20dp" />
+
+
     <android.support.v7.widget.Toolbar
         android:layout_width = "match_parent"
         android:layout_height="50dp"
@@ -28,35 +32,39 @@
         android:id="@+id/view"></android.support.v7.widget.Toolbar>
 
     <ImageButton
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="96dp"
+        android:layout_height="75dp"
         android:id="@+id/forehandPic"
         android:src="@drawable/serve"
+        android:background="@color/forehand_color"
+        android:layout_above="@+id/overviewButton"
         android:layout_alignParentStart="true" />
 
     <ImageButton
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="96dp"
+        android:layout_height="75dp"
         android:id="@+id/volleyPic"
         android:src="@drawable/volley"
-        android:layout_toEndOf="@+id/overviewButton"
-        android:layout_marginStart="40dp" />
+        android:layout_toEndOf="@+id/servePic"
+        android:background="@color/backhand_color"/>
 
     <ImageButton
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="96dp"
+        android:layout_height="75dp"
         android:id="@+id/backhandPic"
         android:src="@drawable/backhand"
-        android:layout_toEndOf="@+id/forehandPic"
-        android:layout_marginStart="45dp" />
+        android:background="@color/serve_color"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/forehandPic" />
 
     <ImageButton
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="96dp"
+        android:layout_height="75dp"
         android:id="@+id/servePic"
         android:src="@drawable/forehand"
+        android:background="@color/volley_color"
         android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/volleyPic" />
+        android:layout_toEndOf="@+id/backhandPic" />
 
 
 </RelativeLayout>

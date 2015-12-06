@@ -56,16 +56,16 @@ public class ShowSession extends AppCompatActivity {
         String [] str_arr = message.split("!");
         final String stroke = str_arr[2];
         if (stroke.equals("f")){
-            color = "#359F7A";
+            color = "#218A6A";
+        }
+        else if (stroke.equals("b")){
+            color = "#34A17B";
         }
         else if (stroke.equals("s")){
-            color = "#77AE61";
-        }
-        else if (stroke.equals("v")){
-            color = "#A29B42";
+            color = "#78AF62";
         }
         else {
-            color = "#B3B54C";
+            color = "#B4B64D";
         }
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor(color));
         getSupportActionBar().setBackgroundDrawable(colorDrawable);

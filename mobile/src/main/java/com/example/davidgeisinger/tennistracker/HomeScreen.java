@@ -44,7 +44,7 @@ public class HomeScreen extends AppCompatActivity {
         setContentView(R.layout.activity_home_screen);
         getSupportActionBar().setElevation(0);
 
-        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#359F7A"));
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#218A6A"));
         getSupportActionBar().setBackgroundDrawable(colorDrawable);
 
         whichStroke = "f";
@@ -115,23 +115,23 @@ public class HomeScreen extends AppCompatActivity {
     public void populateListView(String stroke, MyDBHandler db) {
         Button button = (Button) findViewById(R.id.overviewButton);
         if (stroke.equals("f")){
-            button.setBackgroundColor(Color.parseColor("#359F7A"));
-            ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#359F7A"));
+            button.setBackgroundColor(Color.parseColor("#218A6A"));
+            ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#218A6A"));
+            getSupportActionBar().setBackgroundDrawable(colorDrawable);
+        }
+        else if (stroke.equals("b")){
+            button.setBackgroundColor(Color.parseColor("#34A17B"));
+            ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#34A17B"));
             getSupportActionBar().setBackgroundDrawable(colorDrawable);
         }
         else if (stroke.equals("s")){
-            button.setBackgroundColor(Color.parseColor("#77AE61"));
-            ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#77AE61"));
-            getSupportActionBar().setBackgroundDrawable(colorDrawable);
-        }
-        else if (stroke.equals("v")){
-            button.setBackgroundColor(Color.parseColor("#A29B42"));
-            ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#A29B42"));
+            button.setBackgroundColor(Color.parseColor("#78AF62"));
+            ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#78AF62"));
             getSupportActionBar().setBackgroundDrawable(colorDrawable);
         }
         else {
-            button.setBackgroundColor(Color.parseColor("#B3B54C"));
-            ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#B3B54C"));
+            button.setBackgroundColor(Color.parseColor("#B4B64D"));
+            ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#B4B64D"));
             getSupportActionBar().setBackgroundDrawable(colorDrawable);
         }
         ArrayList<StatsPackage> items = db.findMany(stroke);
@@ -210,7 +210,7 @@ public class HomeScreen extends AppCompatActivity {
 
                 // This makes it so clicking to see an overview without data will not crash, we
                 // have to choose what to do here
-                if (your_array_list.size() == 0) {
+                if (your_array_list.size() < 2) {
                     return;
                 }
                 Intent intent = new Intent(HomeScreen.this, OverviewActivity.class);

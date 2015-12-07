@@ -28,27 +28,19 @@ public class HomeScreen extends AppCompatActivity {
 
     private ListView lv;
     ArrayAdapter<StatsPackage> arrayAdapter;
-    StatsPackageDataAdapter statsAdapter;
     List<StatsPackage> your_array_list;
     ImageButton forehandButton;
     ImageButton backhandButton;
     ImageButton serveButton;
     ImageButton volleyButton;
     Button seeOverviewButton;
-    View title;
-    View titleBar;
 
     MyDBHandler dbHandler = new MyDBHandler(this);
 
     String whichStroke;
-//    DataReceiver dataReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //title = getWindow().findViewById(android.R.id.title);
-        //titleBar = (View) title.getParent();
-        //titleBar.setBackgroundColor(Color.RED);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         getSupportActionBar().setElevation(0);
@@ -60,10 +52,6 @@ public class HomeScreen extends AppCompatActivity {
         setTheSwingListeners();
         setTheOverviewListener();
         lv = (ListView) findViewById(R.id.listy);
-        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-                new IntentFilter("broadcastStats"));
-//        dataReceiver = new DataReceiver();
-//        registerReceiver(mMessageReceiver, new IntentFilter("broadcastStats"));
         your_array_list = new ArrayList<StatsPackage>();
         arrayAdapter = new ArrayAdapter<StatsPackage>(
                 this,
@@ -154,6 +142,7 @@ public class HomeScreen extends AppCompatActivity {
         //we are on
     }
 
+
     public void setTheSwingListeners() {
         forehandButton = (ImageButton) findViewById(R.id.forehandPic);
         backhandButton = (ImageButton) findViewById(R.id.backhandPic);
@@ -234,53 +223,6 @@ public class HomeScreen extends AppCompatActivity {
         dbHandler.addEntry(dbHandler, temp_sp);
 
         //actually populate the DB
-    }
-
-    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Bundle extra = intent.getExtras();
-            double in = extra.getDouble("in");
-            double longg = extra.getDouble("long");
-            double wide = extra.getDouble("wide");
-            double net = extra.getDouble("net");
-            Log.d("RECEIVED", "HELLO");
-            arrayAdapter.notifyDataSetChanged();
-//            StatsPackage newEntry = new StatsPackage(magnitude, location, longitude, latitude);
-//            pastEarthquakes.add(0, newEntry);
-//            dataAdapter.notifyDataSetChanged();
-//            if (extra.getString("type") == "notify") {
-//                new SendToWatchThread("/message_path", formatMessage(newEntry)).start();
-//                openMap(newEntry);
-//            }
-        }
-    };
-
-    private class StatsPackageDataAdapter extends ArrayAdapter<StatsPackageDataAdapter> {
-
-        HashMap<StatsPackageDataAdapter, Integer> mIdMap = new HashMap<StatsPackageDataAdapter, Integer>();
-
-        public StatsPackageDataAdapter(Context context, List<StatsPackageDataAdapter> objects) {
-            super(context, 0, objects);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            // Get the data item for this position
-            StatsPackageDataAdapter data = getItem(position);
-            // Check if an existing view is being reused, otherwise inflate the view
-            if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_home_screen, parent, false);
-            }
-//            // Lookup view for data population
-//            TextView location = (TextView) convertView.findViewById(R.id.location);
-//            TextView magnitude = (TextView) convertView.findViewById(R.id.magnitude);
-//            // Populate the data into the template view using the data object
-//            location.setText(data.getLocation());
-//            magnitude.setText(Double.toString(data.getMagnitude()));
-            // Return the completed view to render on screen
-            return convertView;
-        }
     }
 
 }

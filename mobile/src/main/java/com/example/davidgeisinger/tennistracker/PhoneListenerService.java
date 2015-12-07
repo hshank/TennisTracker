@@ -27,16 +27,12 @@ public class PhoneListenerService extends WearableListenerService {
     public void onMessageReceived(MessageEvent messageEvent) {
         Log.d("HELLO", messageEvent.getPath());
         if( messageEvent.getPath().equalsIgnoreCase(START_STATS)) {
-//            String value = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            String value = new String(messageEvent.getData(), StandardCharsets.UTF_8);
 //            Log.d("ReceivedData", "hello");
-//            Intent serviceIntent = new Intent("broadcastStats");
-//            serviceIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            serviceIntent.putExtra("phone_data", value);
-//            serviceIntent.setAction("Data");
-//            sendBroadcast(serviceIntent);
-            Intent intent = new Intent(this, HomeScreen.class);
-            intent.addFlags( Intent.FLAG_ACTIVITY_NEW_TASK );
-            startActivity(intent);
+            Intent serviceIntent = new Intent("broadcastStats");
+            serviceIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            serviceIntent.putExtra("phone_data", value);
+            startActivity(serviceIntent);
         } else {
             super.onMessageReceived(messageEvent);
         }

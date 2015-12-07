@@ -72,19 +72,19 @@ public class ListeningActivity extends Activity {
         super.onStart();
         bindService(new Intent(this, VoiceRecognitionService.class), mServiceConnection, mBindFlag);
     }
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Message msg = new Message();
-        msg.replyTo = mResponseMessenger;
-        msg.what = VoiceRecognitionService.MSG_RECOGNIZER_CANCEL;
-        try {
-            mServiceMessenger.send(msg);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-
-    }
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        Message msg = new Message();
+//        msg.replyTo = mResponseMessenger;
+//        msg.what = VoiceRecognitionService.MSG_RECOGNIZER_CANCEL;
+//        try {
+//            mServiceMessenger.send(msg);
+//        } catch (RemoteException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 
 //    @Override
 //    protected void onResume() {
@@ -100,15 +100,15 @@ public class ListeningActivity extends Activity {
 //
 //    }
 //
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        if (mServiceMessenger != null) {
-//            stopService(service);
-//            unbindService(mServiceConnection);
-//            mServiceMessenger = null;
-//        }
-//    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mServiceMessenger != null) {
+            stopService(service);
+            unbindService(mServiceConnection);
+            mServiceMessenger = null;
+        }
+    }
 
     public void finishSession(View view) {
 //      send results to phone

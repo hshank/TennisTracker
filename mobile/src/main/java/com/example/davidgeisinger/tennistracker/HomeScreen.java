@@ -47,7 +47,6 @@ public class HomeScreen extends AppCompatActivity {
 
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#218A6A"));
         getSupportActionBar().setBackgroundDrawable(colorDrawable);
-
         whichStroke = "f";
         setTheSwingListeners();
         setTheOverviewListener();
@@ -117,9 +116,9 @@ public class HomeScreen extends AppCompatActivity {
         arrayAdapter.clear();
         if (items.get(0) != null) {
             Log.d("MYSIZE", Integer.toString(items.size()));
-            for(int i = 0; i < items.size(); i++) {
+            for(int i = items.size() - 1; i >= 0; i--) {
                 Log.d("whatimentering", items.get(i).date + items.get(i).stats + items.get(i).stroke + items.get(i).time);
-                arrayAdapter.insert(items.get(i), i);
+                arrayAdapter.insert(items.get(i), items.size() - 1 - i);
             }
         } else {
             // do something to tell them there are no entries
@@ -207,7 +206,9 @@ public class HomeScreen extends AppCompatActivity {
     public void putInDB(String message, MyDBHandler dbHandler) {
         //parse message
         String [] arr = message.split("!");
-        StatsPackage temp_sp = new StatsPackage(arr[0], arr[1], arr[2], arr[3]);
+        String [] time = arr[0].split(" ");
+        String newTime = time[1] + " " + time[2] + ", " + time[5] + " at " + time[3].split(":")[0] + ":" + time[3].split(":")[1];
+        StatsPackage temp_sp = new StatsPackage(newTime, arr[1], arr[2], arr[3]);
         dbHandler.addEntry(dbHandler, temp_sp);
 
         //actually populate the DB

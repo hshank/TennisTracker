@@ -167,7 +167,7 @@ public class OverviewActivity extends AppCompatActivity {
                 bestShots = Integer.parseInt(made[0]);
                 mostShotsTotal = Integer.toString(Integer.parseInt(made[0]) + Integer.parseInt(made[1]) + Integer.parseInt(made[2]) + Integer.parseInt(made[3]));
                 mostShotsDate = items.get(i).date;
-                mostShotsDate = mostShotsDate.split(" ")[0].substring(0,3) + " " + mostShotsDate.split(" ")[1];
+                mostShotsDate = mostShotsDate.split(" ")[1] + " " + mostShotsDate.split(" ")[2];
             }
         }
         mostShots = Integer.toString(bestShots);
@@ -183,7 +183,7 @@ public class OverviewActivity extends AppCompatActivity {
                 leastShotsTotal = Integer.toString(Integer.parseInt(made[0]) + Integer.parseInt(made[1]) + Integer.parseInt(made[2]) + Integer.parseInt(made[3]));
                 leastShotsDate = items.get(i).date;
                 leastShotsDate = items.get(i).date;
-                leastShotsDate = leastShotsDate.split(" ")[0].substring(0,3) + " " + leastShotsDate.split(" ")[1];
+                leastShotsDate = leastShotsDate.split(" ")[1] + " " + leastShotsDate.split(" ")[2];
             }
         }
         leastShots = Integer.toString(worstShots);

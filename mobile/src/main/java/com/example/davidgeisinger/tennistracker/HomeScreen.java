@@ -1,11 +1,18 @@
 package com.example.davidgeisinger.tennistracker;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,8 +20,8 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import android.graphics.Color;
 
 public class HomeScreen extends AppCompatActivity {
 
@@ -27,8 +34,6 @@ public class HomeScreen extends AppCompatActivity {
     ImageButton serveButton;
     ImageButton volleyButton;
     Button seeOverviewButton;
-    View title;
-    View titleBar;
 
     MyDBHandler dbHandler = new MyDBHandler(this);
 
@@ -36,10 +41,6 @@ public class HomeScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //title = getWindow().findViewById(android.R.id.title);
-        //titleBar = (View) title.getParent();
-        //titleBar.setBackgroundColor(Color.RED);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         getSupportActionBar().setElevation(0);
@@ -50,22 +51,21 @@ public class HomeScreen extends AppCompatActivity {
         whichStroke = "f";
         setTheSwingListeners();
         setTheOverviewListener();
-
         lv = (ListView) findViewById(R.id.listy);
-
         your_array_list = new ArrayList<StatsPackage>();
         arrayAdapter = new ArrayAdapter<StatsPackage>(
                 this,
                 android.R.layout.simple_list_item_1,
                 your_array_list);
-
-
         lv.setAdapter(arrayAdapter);
-
+        Intent service = new Intent(this, PhoneListenerService.class);
+        startService(service);
+        Log.d("start", "service");
         String message;
         Bundle mybundle = getIntent().getExtras();
         if (mybundle != null) {
             if (mybundle.getString("phone_data") != null) {
+                Log.d("GETOWNEDDDD", mybundle.getString("phone_data"));
                 message = mybundle.getString("phone_data");
                 putInDB(message, dbHandler);
             }
@@ -73,7 +73,6 @@ public class HomeScreen extends AppCompatActivity {
                 Log.d("GETTINGTOHERE", mybundle.getString("stroke"));
                 whichStroke = mybundle.getString("stroke");
             }
-
         }
 
         StatsPackage addthis = new StatsPackage("November 29th", "7$2$4$9", "s", "37");
@@ -86,23 +85,15 @@ public class HomeScreen extends AppCompatActivity {
         Log.d("Start", "HILLEZ");
 
         StatsPackage check_this = dbHandler.findEntry(addthis);
-       Log.d("Chekcing", check_this.time);
-
+        Log.d("Chekcing", check_this.time);
         populateListView(whichStroke, dbHandler);
-
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-
                 Object item = parent.getItemAtPosition(position);
                 StatsPackage real_item = (StatsPackage) item;
                 String toBePassed = real_item.date + "!" + real_item.stats + "!" + real_item.stroke + "!" + real_item.time;
-
                 Intent intent = new Intent(HomeScreen.this, ShowSession.class);
-
-
                 intent.putExtra("string_passed", toBePassed);
                 startActivity(intent);
 
@@ -150,6 +141,7 @@ public class HomeScreen extends AppCompatActivity {
         // we must iterate over all entries in database that correspond to the stroke
         //we are on
     }
+
 
     public void setTheSwingListeners() {
         forehandButton = (ImageButton) findViewById(R.id.forehandPic);
@@ -232,6 +224,5 @@ public class HomeScreen extends AppCompatActivity {
 
         //actually populate the DB
     }
-
 
 }

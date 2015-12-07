@@ -16,12 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShowScreen" >
-        </activity>
         <activity android:name=".ShowSession" >
         </activity>
         <activity android:name=".OverviewActivity" >
         </activity>
+        <service
+            android:name=".PhoneListenerService"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

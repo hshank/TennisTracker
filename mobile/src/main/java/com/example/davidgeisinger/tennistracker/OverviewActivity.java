@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -51,30 +52,28 @@ public class OverviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_overview);
         Bundle mybundle = getIntent().getExtras();
         final String stroke = mybundle.getString("string_to_overview");
+        Button button = (Button) findViewById(R.id.backButton);
         if (stroke.equals("f")){
             setTitle("Forehand Overview");
-        }
-        else if (stroke.equals("s")){
-            setTitle("Serve Overview");
-        }
-        else if (stroke.equals("v")){
-            setTitle("Volley Overview");
-        }
-        else {
-            setTitle("Backhand Overview");
-        }
-        if (stroke.equals("f")){
             color = "#218A6A";
+            button.setBackgroundColor(Color.parseColor(color));
         }
         else if (stroke.equals("b")){
+            setTitle("Backhand Overview");
             color = "#34A17B";
+            button.setBackgroundColor(Color.parseColor(color));
         }
         else if (stroke.equals("s")){
             color = "#78AF62";
+            setTitle("Serve Overview");
+            button.setBackgroundColor(Color.parseColor(color));
         }
         else {
+            setTitle("Volley Overview");
             color = "#B4B64D";
+            button.setBackgroundColor(Color.parseColor(color));
         }
+
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor(color));
         getSupportActionBar().setBackgroundDrawable(colorDrawable);
         avgShotsText = (TextView) findViewById(R.id.avgMade);
@@ -138,12 +137,12 @@ public class OverviewActivity extends AppCompatActivity {
     }
 
     public void populateTextFields() {
-        avgShotsText.setText("Average Shots Made: " + avgShots);
-        mostShotsText.setText("Most Shots Made: " + mostShots + "/" + mostShotsTotal + "(" + mostShotsDate + ")");
-        leastShotsText.setText("Least Shots Made: " + leastShots + "/" + leastShotsTotal + "(" + leastShotsDate + ")");
-        avgPracticeText.setText("Average Practice Length: " + avgPracticeTime + " minutes");
-        mostPracticeText.setText("Longest Practice: " + mostPracticeTime + " minutes");
-        leastPracticeText.setText("Shortest Practice: " + leastPracticeTime + " minutes");
+        avgShotsText.setText(Html.fromHtml("<b>  Average Shots Made: </b> " + avgShots));
+        mostShotsText.setText(Html.fromHtml("<b>  Most Shots Made: </b> " + mostShots + "/" + mostShotsTotal + "  (" + mostShotsDate + ")"));
+        leastShotsText.setText(Html.fromHtml("<b>  Least Shots Made: </b> " + leastShots + "/" + leastShotsTotal + "  (" + leastShotsDate + ")\n"));
+        avgPracticeText.setText(Html.fromHtml("<b>  Average Practice Length: </b> " + avgPracticeTime + " minutes"));
+        mostPracticeText.setText(Html.fromHtml("<b>  Longest Practice: </b> " + mostPracticeTime + " minutes"));
+        leastPracticeText.setText(Html.fromHtml("<b>  Shortest Practice: </b> " + leastPracticeTime + " minutes"));
 
     }
 
@@ -168,6 +167,7 @@ public class OverviewActivity extends AppCompatActivity {
                 bestShots = Integer.parseInt(made[0]);
                 mostShotsTotal = Integer.toString(Integer.parseInt(made[0]) + Integer.parseInt(made[1]) + Integer.parseInt(made[2]) + Integer.parseInt(made[3]));
                 mostShotsDate = items.get(i).date;
+                mostShotsDate = mostShotsDate.split(" ")[0].substring(0,3) + " " + mostShotsDate.split(" ")[1];
             }
         }
         mostShots = Integer.toString(bestShots);
@@ -182,6 +182,8 @@ public class OverviewActivity extends AppCompatActivity {
                 worstShots = Integer.parseInt(made[0]);
                 leastShotsTotal = Integer.toString(Integer.parseInt(made[0]) + Integer.parseInt(made[1]) + Integer.parseInt(made[2]) + Integer.parseInt(made[3]));
                 leastShotsDate = items.get(i).date;
+                leastShotsDate = items.get(i).date;
+                leastShotsDate = leastShotsDate.split(" ")[0].substring(0,3) + " " + leastShotsDate.split(" ")[1];
             }
         }
         leastShots = Integer.toString(worstShots);

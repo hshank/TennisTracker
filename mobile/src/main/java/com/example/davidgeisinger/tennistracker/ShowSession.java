@@ -57,15 +57,20 @@ public class ShowSession extends AppCompatActivity {
         final String stroke = str_arr[2];
         if (stroke.equals("f")){
             color = "#218A6A";
+            back_button.setBackgroundColor(Color.parseColor(color));
+
         }
         else if (stroke.equals("b")){
             color = "#34A17B";
+            back_button.setBackgroundColor(Color.parseColor(color));
         }
         else if (stroke.equals("s")){
             color = "#78AF62";
+            back_button.setBackgroundColor(Color.parseColor(color));
         }
         else {
             color = "#B4B64D";
+            back_button.setBackgroundColor(Color.parseColor(color));
         }
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor(color));
         getSupportActionBar().setBackgroundDrawable(colorDrawable);
@@ -119,10 +124,10 @@ public class ShowSession extends AppCompatActivity {
     }
 
     public void changeTexts() {
-        shotsInText.setText(Html.fromHtml("    <b>Successful: </b> " + Integer.toString(shotsMade) + "/" + Integer.toString(shotsTotal) + " shots."));
-        shotsLongText.setText(Html.fromHtml("    <b>Long: </b> " + Integer.toString(shotsLong) + "/" + Integer.toString(shotsTotal) + " shots."));
-        shotsWideText.setText(Html.fromHtml("    <b>Wide: </b> " + Integer.toString(shotsWide) + "/" + Integer.toString(shotsTotal) + " shots."));
-        shotsNetText.setText(Html.fromHtml("    <b>Net: </b> " + Integer.toString(shotsNet) + "/" + Integer.toString(shotsTotal) + " shots."));
+        shotsInText.setText(Html.fromHtml("    <b>Successful: </b> " + Integer.toString(shotsMade) + "/" + Integer.toString(shotsTotal) + " shots"));
+        shotsLongText.setText(Html.fromHtml("    <b>Long: </b> " + Integer.toString(shotsLong) + "/" + Integer.toString(shotsTotal) + " shots"));
+        shotsWideText.setText(Html.fromHtml("    <b>Wide: </b> " + Integer.toString(shotsWide) + "/" + Integer.toString(shotsTotal) + " shots"));
+        shotsNetText.setText(Html.fromHtml("    <b>Net: </b> " + Integer.toString(shotsNet) + "/" + Integer.toString(shotsTotal) + " shots"));
         durationText.setText(Html.fromHtml("    <b>Length of Practice: </b> " + practiceTime + " minutes"));
     }
 

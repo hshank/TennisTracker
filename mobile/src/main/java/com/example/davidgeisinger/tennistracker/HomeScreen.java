@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
@@ -17,12 +18,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import android.graphics.Color;
 
 public class HomeScreen extends AppCompatActivity {
 
@@ -78,6 +77,7 @@ public class HomeScreen extends AppCompatActivity {
         Bundle mybundle = getIntent().getExtras();
         if (mybundle != null) {
             if (mybundle.getString("phone_data") != null) {
+                Log.d("GETOWNEDDDD", mybundle.getString("phone_data"));
                 message = mybundle.getString("phone_data");
                 putInDB(message, dbHandler);
             }

@@ -72,16 +72,43 @@ public class ListeningActivity extends Activity {
         super.onStart();
         bindService(new Intent(this, VoiceRecognitionService.class), mServiceConnection, mBindFlag);
     }
-
     @Override
-    protected void onStop() {
-        super.onStop();
-        if (mServiceMessenger != null) {
-            stopService(service);
-            unbindService(mServiceConnection);
-            mServiceMessenger = null;
+    protected void onPause() {
+        super.onPause();
+        Message msg = new Message();
+        msg.replyTo = mResponseMessenger;
+        msg.what = VoiceRecognitionService.MSG_RECOGNIZER_CANCEL;
+        try {
+            mServiceMessenger.send(msg);
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
+
     }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        Message msg = new Message();
+//        msg.replyTo = mResponseMessenger;
+//        msg.what = VoiceRecognitionService.MSG_RECOGNIZER_CONTINUE_LISTENING;
+//        try {
+//            mServiceMessenger.send(msg);
+//        } catch (RemoteException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        if (mServiceMessenger != null) {
+//            stopService(service);
+//            unbindService(mServiceConnection);
+//            mServiceMessenger = null;
+//        }
+//    }
 
     public void finishSession(View view) {
 //      send results to phone
@@ -97,7 +124,7 @@ public class ListeningActivity extends Activity {
                     endTime = System.currentTimeMillis();
                     long time_total = (endTime - startTime) / 1000 / 60;
                     String time = Long.toString(time_total);
-                    String to_send = todayStr + "!" + stats + "!" + motion + "!" + time;
+                    String to_send = todayStr + "!" + stats + "!" + motion.substring(0, 1) + "!" + time;
                     client.blockingConnect(CONNECTION_TIME_OUT_MS, TimeUnit.MILLISECONDS);
                     Wearable.MessageApi.sendMessage(client, nodeId, START_STATS, to_send.getBytes() ).await();
                     client.disconnect();

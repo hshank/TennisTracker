@@ -28,7 +28,7 @@ public class PhoneListenerService extends WearableListenerService {
         Log.d("HELLO", messageEvent.getPath());
         if( messageEvent.getPath().equalsIgnoreCase(START_STATS)) {
             String value = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-            Intent serviceIntent = new Intent("broadcastStats");
+            Intent serviceIntent = new Intent(this, HomeScreen.class);
             serviceIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             serviceIntent.putExtra("phone_data", value);
             startActivity(serviceIntent);

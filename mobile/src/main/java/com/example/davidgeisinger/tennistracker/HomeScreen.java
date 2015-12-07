@@ -76,7 +76,7 @@ public class HomeScreen extends AppCompatActivity {
 
         }
 
-        StatsPackage addthis = new StatsPackage("November 24th", "67$26$14$9", "f", "37");
+        StatsPackage addthis = new StatsPackage("November 29th", "7$2$4$9", "s", "37");
         //StatsPackage addthis1 = new StatsPackage("November 26th", "7$6$1$12", "f", "37");
         //StatsPackage addthis2 = new StatsPackage("November 25th", "63$21$14$2", "f", "37");
         Log.d("Start", addthis.time);

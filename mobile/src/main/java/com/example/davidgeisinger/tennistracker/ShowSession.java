@@ -57,15 +57,20 @@ public class ShowSession extends AppCompatActivity {
         final String stroke = str_arr[2];
         if (stroke.equals("f")){
             color = "#218A6A";
+            back_button.setBackgroundColor(Color.parseColor(color));
+
         }
         else if (stroke.equals("b")){
             color = "#34A17B";
+            back_button.setBackgroundColor(Color.parseColor(color));
         }
         else if (stroke.equals("s")){
             color = "#78AF62";
+            back_button.setBackgroundColor(Color.parseColor(color));
         }
         else {
             color = "#B4B64D";
+            back_button.setBackgroundColor(Color.parseColor(color));
         }
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor(color));
         getSupportActionBar().setBackgroundDrawable(colorDrawable);

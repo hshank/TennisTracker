@@ -37,5 +37,4 @@ public class StatsPackage {
         }
         return date + "\n" + Integer.toString(made) + " out of " + Integer.toString(total) + " shots made";
     }
-
 }

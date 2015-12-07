@@ -38,7 +38,7 @@ public class HomeScreen extends AppCompatActivity {
     MyDBHandler dbHandler = new MyDBHandler(this);
 
     String whichStroke;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

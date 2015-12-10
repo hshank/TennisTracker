@@ -17,12 +17,12 @@
             android:layout_height="fill_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:background="@color/forehand_color"
+            android:background="@color/forehand"
             android:onClick="startListener">
             <ImageView
-                android:layout_width="20sp"
-                android:layout_height="30sp"
-                android:src="@drawable/serve"
+                android:layout_width="30sp"
+                android:layout_height="40sp"
+                android:src="@drawable/forehand"
                 android:id="@+id/imageView"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
@@ -43,12 +43,12 @@
             android:layout_height="fill_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:background="@color/backhand_color"
+            android:background="@color/backhand"
             android:onClick="startListener">
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="30dp"
-                android:src="@drawable/serve"
+                android:layout_width="30sp"
+                android:layout_height="40sp"
+                android:src="@drawable/backhand"
                 android:id="@+id/imageView2"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
@@ -77,14 +77,14 @@
             android:layout_height="fill_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:background="@color/serve_color"
+            android:background="@color/serve"
             android:onClick="startListener">
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="30dp"
+                android:layout_width="30sp"
+                android:layout_height="40sp"
                 android:src="@drawable/serve"
                 android:id="@+id/imageView3"
-                android:layout_centerVertical="true"
+                android:layout_above="@+id/textView3"
                 android:layout_centerHorizontal="true" />
             <TextView
                 android:layout_width="wrap_content"
@@ -93,8 +93,9 @@
                 android:layout_gravity="center"
                 android:textColor="@color/white"
                 android:textSize="15dp"
-                android:layout_below="@+id/imageView3"
-                android:layout_centerHorizontal="true" />
+                android:id="@+id/textView3"
+                android:layout_centerVertical="true"
+                android:layout_alignStart="@+id/imageView3" />
         </RelativeLayout>
 
 
@@ -103,14 +104,14 @@
             android:layout_height="fill_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:background="@color/volley_color"
+            android:background="@color/volley"
             android:onClick="startListener">
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="30dp"
-                android:src="@drawable/serve"
+                android:layout_width="45sp"
+                android:layout_height="55sp"
+                android:src="@drawable/volley"
                 android:id="@+id/imageView4"
-                android:layout_centerVertical="true"
+                android:layout_above="@+id/textView4"
                 android:layout_centerHorizontal="true" />
             <TextView
                 android:layout_width="wrap_content"
@@ -120,8 +121,9 @@
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 android:layout_gravity="center"
-                android:layout_below="@+id/imageView4"
-                android:layout_centerHorizontal="true" />
+                android:id="@+id/textView4"
+                android:layout_centerVertical="true"
+                android:layout_alignEnd="@+id/imageView4" />
         </RelativeLayout>
 
     </LinearLayout>

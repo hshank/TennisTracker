@@ -115,7 +115,7 @@ public class OverviewActivity extends AppCompatActivity {
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(dpArr);
         graph.addSeries(series);
 
-        graph.setTitle("Set Date As Title");
+        graph.setTitle(items.get(0).date.substring(0,12) + " - " + items.get(items.size() - 1).date.substring(0,12));
         graph.setTitleTextSize(100);
         series.setColor(Color.parseColor(color));
         Viewport viewPort = graph.getViewport();
@@ -167,7 +167,7 @@ public class OverviewActivity extends AppCompatActivity {
                 bestShots = Integer.parseInt(made[0]);
                 mostShotsTotal = Integer.toString(Integer.parseInt(made[0]) + Integer.parseInt(made[1]) + Integer.parseInt(made[2]) + Integer.parseInt(made[3]));
                 mostShotsDate = items.get(i).date;
-                mostShotsDate = mostShotsDate.split(" ")[1] + " " + mostShotsDate.split(" ")[2];
+                mostShotsDate = mostShotsDate.split(" ")[0] + " " + mostShotsDate.split(" ")[1].substring(0,2);
             }
         }
         mostShots = Integer.toString(bestShots);
@@ -183,7 +183,7 @@ public class OverviewActivity extends AppCompatActivity {
                 leastShotsTotal = Integer.toString(Integer.parseInt(made[0]) + Integer.parseInt(made[1]) + Integer.parseInt(made[2]) + Integer.parseInt(made[3]));
                 leastShotsDate = items.get(i).date;
                 leastShotsDate = items.get(i).date;
-                leastShotsDate = leastShotsDate.split(" ")[1] + " " + leastShotsDate.split(" ")[2];
+                leastShotsDate = leastShotsDate.split(" ")[0] + " " + leastShotsDate.split(" ")[1].substring(0,2);
             }
         }
         leastShots = Integer.toString(worstShots);

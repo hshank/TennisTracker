@@ -1,51 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/forehand_color">
+    android:layout_height="match_parent">
 
+    <ImageView
+        android:layout_width="30sp"
+        android:layout_height="40sp"
+        android:src="@drawable/forehand"
+        android:id="@+id/imageView"
+        android:layout_alignTop="@+id/nav"
+        android:layout_marginStart="55dp" />
     <TextView
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/title_forehand"
-        android:id="@+id/nav"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp" />
+        android:layout_marginLeft="95dp"
+        android:layout_marginTop="25dp"
+        android:id="@+id/nav"/>
 
     <FrameLayout
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:background="@color/white"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/frameLayout">
+        android:id="@+id/frameLayout"
+        android:layout_marginTop="70dp"
+        android:layout_centerHorizontal="true">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
             android:text="@string/shots_made"
-            android:textColor="@color/forehand_color"
-            android:textSize="12dp"
-            android:layout_gravity="center_horizontal|bottom"/>
+            android:id="@+id/shotsText"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:layout_gravity="center|right"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
             android:id="@+id/shotsMade"
             android:text="0/0"
-            android:layout_gravity="center"
-            android:textColor="@color/forehand_color"
-            android:textSize="30dp"/>
+            android:gravity="center"
+            android:layout_gravity="center|left"
+            android:textSize="35dp"/>
     </FrameLayout>
 
     <TextView
         android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="@string/finish_session"
+        android:text="@string/instructions"
         android:textAlignment="center"
+        android:id="@+id/main"
+        android:textSize="12dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_below="@+id/frameLayout"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:text="@string/finish_session"
+        android:background="@color/white"
+        android:gravity="center"
         android:id="@+id/finish"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="27dp"
+        android:layout_marginBottom="35dp"
         android:onClick="finishSession"
         android:clickable="true"/>
 </RelativeLayout>

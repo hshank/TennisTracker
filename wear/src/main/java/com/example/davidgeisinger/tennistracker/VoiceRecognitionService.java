@@ -68,10 +68,12 @@ public class VoiceRecognitionService extends Service
 
             switch (msg.what) {
                 case MSG_RECOGNIZER_START_LISTENING:
-                    target.mSpeechRecognizer.startListening(target.mSpeechRecognizerIntent);
-                    target.mIsListening = true;
-                    target.mResponseMessenger = msg.replyTo;
-                    Log.d("Recgonizer", "message start listening"); //$NON-NLS-1$
+                    if (!target.mIsListening) {
+                        target.mSpeechRecognizer.startListening(target.mSpeechRecognizerIntent);
+                        target.mIsListening = true;
+                        target.mResponseMessenger = msg.replyTo;
+                        Log.d("Recgonizer", "message start listening");
+                    }
                     break;
                 case MSG_RECOGNIZER_CONTINUE_LISTENING:
                     if (!target.mIsListening) {

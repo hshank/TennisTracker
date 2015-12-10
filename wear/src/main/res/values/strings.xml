@@ -1,21 +1,21 @@
 <resources>
     <string name="app_name">Tennis Tracker</string>
-    <string name="welcome">Welcome to Tennis Tracker</string>
-    <string name="welcome_message">tap to select practice session</string>
+    <string name="welcome">Welcome to\nTennis Tracker</string>
+    <string name="welcome_message">tap to select\npractice session</string>
     <string name="title_activity_stroke_selection">StrokeSelectionActivity</string>
     <string name="title_activity_listening">ListeningActivity</string>
-    <string name="title_forehand">Practicing Forehand</string>
-    <string name="title_backhand">Practicing Backhand</string>
-    <string name="title_serve">Practicing Serve</string>
-    <string name="title_volley">Practicing Volley</string>
+    <string name="title_forehand">Practicing\nForehand</string>
+    <string name="title_backhand">Practicing\nBackhand</string>
+    <string name="title_serve">Practicing\nServe</string>
+    <string name="title_volley">Practicing\nVolley</string>
     <string name="forehand">FOREHAND</string>
     <string name="backhand">BACKHAND</string>
     <string name="serve">SERVE</string>
     <string name="volley">VOLLEY</string>
-    <string name="shots_made">shots made</string>
+    <string name="shots_made">shots\nmade</string>
     <string name="begin_session">BEGIN SESSION</string>
     <string name="finish_session">FINISH SESSION</string>
-    <string name="listening_activity_message">Say \"in\" when your shots are successful. Track shots that are out of bounds by saying \"long\" \"wide\" or \"net\"</string>
+    <string name="instructions">Say \"in\" when your shots are successful. Track shots that are out of bounds by saying \"long\" \"wide\" or \"net\"</string>
     <string name="title_activity_instruction">InstructionActivity</string>
 
 <!-- TODO: Remove or change this placeholder text -->

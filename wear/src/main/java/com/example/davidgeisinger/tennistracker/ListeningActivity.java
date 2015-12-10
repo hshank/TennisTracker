@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -54,10 +55,18 @@ public class ListeningActivity extends Activity {
         startTime = System.currentTimeMillis();
 
         motion = getIntent().getStringExtra("motion");
+        int colorId = getResources().getIdentifier(motion, "color", getPackageName());
+        int shotColor = Color.parseColor(getResources().getString(colorId));
+        getWindow().getDecorView().setBackgroundColor(shotColor);
         TextView nav = (TextView) this.findViewById(R.id.nav);
         int sessionId = getResources().getIdentifier("title_" + motion, "string", getPackageName());
         nav.setText(getString(sessionId));
         shotsMade = (TextView) this.findViewById(R.id.shotsMade);
+        TextView shotsText = (TextView) this.findViewById(R.id.shotsText);
+        TextView finishSession = (TextView) this.findViewById(R.id.finish);
+        shotsMade.setTextColor(shotColor);
+        shotsText.setTextColor(shotColor);
+        finishSession.setTextColor(shotColor);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         retrieveDeviceNode();
 
@@ -72,34 +81,7 @@ public class ListeningActivity extends Activity {
         super.onStart();
         bindService(new Intent(this, VoiceRecognitionService.class), mServiceConnection, mBindFlag);
     }
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        Message msg = new Message();
-//        msg.replyTo = mResponseMessenger;
-//        msg.what = VoiceRecognitionService.MSG_RECOGNIZER_CANCEL;
-//        try {
-//            mServiceMessenger.send(msg);
-//        } catch (RemoteException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        Message msg = new Message();
-//        msg.replyTo = mResponseMessenger;
-//        msg.what = VoiceRecognitionService.MSG_RECOGNIZER_CONTINUE_LISTENING;
-//        try {
-//            mServiceMessenger.send(msg);
-//        } catch (RemoteException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-//
     @Override
     protected void onStop() {
         super.onStop();

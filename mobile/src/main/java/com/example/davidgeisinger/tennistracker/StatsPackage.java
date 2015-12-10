@@ -7,8 +7,9 @@ public class StatsPackage {
 
     public String date;
     public String stats;
-    public String time;
     public String stroke;
+    public String time;
+
 
 
     public StatsPackage(String first, String second, String third, String fourth) {

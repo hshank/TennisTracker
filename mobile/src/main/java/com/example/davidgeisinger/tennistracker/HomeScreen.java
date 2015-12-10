@@ -207,10 +207,10 @@ public class HomeScreen extends AppCompatActivity {
         //parse message
         String [] arr = message.split("!");
         String [] time = arr[0].split(" ");
+        whichStroke = arr[2];
         String newTime = time[1] + " " + time[2] + ", " + time[5] + " at " + time[3].split(":")[0] + ":" + time[3].split(":")[1];
-        StatsPackage temp_sp = new StatsPackage(newTime, arr[1], arr[2], arr[3]);
+        StatsPackage temp_sp = new StatsPackage(newTime, arr[1], whichStroke, arr[3]);
         dbHandler.addEntry(dbHandler, temp_sp);
-
         //actually populate the DB
     }
 

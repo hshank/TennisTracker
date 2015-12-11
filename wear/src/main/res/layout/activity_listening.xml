@@ -16,27 +16,28 @@
         android:text="@string/title_forehand"
         android:layout_marginLeft="95dp"
         android:layout_marginTop="25dp"
+        android:textSize="15dp"
         android:id="@+id/nav"/>
 
     <FrameLayout
-        android:layout_width="150dp"
-        android:layout_height="50dp"
+        android:layout_width="170dp"
+        android:layout_height="55dp"
         android:background="@color/white"
         android:id="@+id/frameLayout"
         android:layout_marginTop="70dp"
         android:layout_centerHorizontal="true">
 
         <TextView
-            android:layout_width="75dp"
+            android:layout_width="85dp"
             android:layout_height="match_parent"
             android:text="@string/shots_made"
             android:id="@+id/shotsText"
             android:gravity="center"
-            android:textSize="18dp"
+            android:textSize="20dp"
             android:layout_gravity="center|right"/>
 
         <TextView
-            android:layout_width="75dp"
+            android:layout_width="85dp"
             android:layout_height="match_parent"
             android:id="@+id/shotsMade"
             android:text="0/0"
